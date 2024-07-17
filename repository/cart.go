@@ -5,13 +5,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"syCart/helper"
 	"syCart/model"
-	"time"
 )
-
-func NewTimestamp() primitive.Timestamp {
-	return primitive.Timestamp{T: uint32(time.Now().Unix())}
-}
 
 type cartImpl struct {
 	coll *mongo.Collection
@@ -26,7 +22,7 @@ func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, itemId primi
 		UserId:    userId.UserId,
 		ProductId: itemId,
 		Quantity:  quantity,
-		AddedAt:   NewTimestamp(),
+		AddedAt:   helper.NewTimestamp(),
 	})
 
 	if err != nil {

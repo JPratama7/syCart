@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"syCart/helper"
 	"syCart/model"
 )
 
@@ -25,8 +26,8 @@ func (r *orderRepository) Checkout(ctx context.Context, user *model.User, items 
 		TotalAmount: 0,
 		Status:      "PENDING",
 		OrderItems:  items,
-		CreatedAt:   NewTimestamp(),
-		UpdatedAt:   NewTimestamp(),
+		CreatedAt:   helper.NewTimestamp(),
+		UpdatedAt:   helper.NewTimestamp(),
 	}
 
 	result, err := r.collection.InsertOne(ctx, order)
