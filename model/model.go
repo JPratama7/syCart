@@ -4,6 +4,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+type Token struct {
+	Username string `json:"username"`
+	Email    string `json:"email"`
+}
+
 type User struct {
 	UserId       primitive.ObjectID  `json:"user_id" bson:"_id,omitempty"`
 	Username     string              `json:"username" bson:"username"`
