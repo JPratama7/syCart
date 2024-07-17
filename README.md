@@ -1,5 +1,12 @@
 # SyCart
-Simple implemtation using Go, GoFiber, and MongoDB
+Simple implementation of a shopping cart using Golang
+
+## Features
+- Create a new cart
+- Add items to the cart
+- Remove items from the cart
+- Get All Items in the cart
+- Checkout the cart
 
 ## Database Design
 ![Database Design](diagram.png)
