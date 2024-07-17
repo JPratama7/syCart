@@ -11,8 +11,7 @@ import (
 )
 
 func AddToCart(ctx *fiber.Ctx) (err error) {
-
-	auth, err := helper.ExtractLocal[helper.AuthMiddleware](ctx, "auther")
+	auth, err := helper.ExtractLocal[*helper.AuthMiddleware](ctx, "auther")
 	if err != nil {
 		return
 	}
@@ -65,6 +64,20 @@ func AddToCart(ctx *fiber.Ctx) (err error) {
 		return fiberHelper.NewReturnData(fiber.StatusBadRequest, false, "Out of Stock", types.NilInt()).WriteResponseBody(ctx)
 	}
 
+	cartItem, err := cart.GetCartItem(ctx.Context(), &userData, productId)
+	if err == nil {
+		cartItem.Quantity += req.Quantity
+		err = cart.UpdateCart(ctx.Context(), &userData, &cartItem)
+
+		if err != nil {
+			return fiberHelper.NewReturnData(fiber.StatusInternalServerError, false, "Internal Server Error", types.NilInt()).WriteResponseBody(ctx)
+		}
+
+		return fiberHelper.
+			NewReturnData(fiber.StatusOK, true, "Cart Updated", types.NilInt()).
+			WriteResponseBody(ctx)
+	}
+
 	id, err := cart.AddCart(ctx.Context(), &userData, productId, req.Quantity)
 	if err != nil {
 		return fiberHelper.NewReturnData(fiber.StatusInternalServerError, false, "Internal Server Error", types.NilInt()).WriteResponseBody(ctx)
@@ -76,7 +89,7 @@ func AddToCart(ctx *fiber.Ctx) (err error) {
 }
 
 func DeleteCart(ctx *fiber.Ctx) (err error) {
-	auth, err := helper.ExtractLocal[helper.AuthMiddleware](ctx, "auther")
+	auth, err := helper.ExtractLocal[*helper.AuthMiddleware](ctx, "auther")
 	if err != nil {
 		return
 	}
@@ -119,7 +132,7 @@ func DeleteCart(ctx *fiber.Ctx) (err error) {
 }
 
 func GetCartItems(ctx *fiber.Ctx) (err error) {
-	auth, err := helper.ExtractLocal[helper.AuthMiddleware](ctx, "auther")
+	auth, err := helper.ExtractLocal[*helper.AuthMiddleware](ctx, "auther")
 	if err != nil {
 		return
 	}
@@ -145,7 +158,7 @@ func GetCartItems(ctx *fiber.Ctx) (err error) {
 	}
 
 	cartItems, err := cart.GetCarts(ctx.Context(), &userData)
-	if err != nil {
+	if err != nil || len(cartItems) == 0 {
 		return fiberHelper.
 			NewReturnData(fiber.StatusNotFound, false, "Cart Not Found", types.NilInt()).
 			WriteResponseBody(ctx)
