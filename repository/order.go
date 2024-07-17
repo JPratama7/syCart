@@ -6,7 +6,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
-	"syCart/helper"
 	"syCart/model"
 )
 
@@ -20,15 +19,7 @@ func NewOrderRepository(db *mongo.Database, collectionName string) OrderReposito
 	}
 }
 
-func (r *orderRepository) Checkout(ctx context.Context, user *model.User, items *[]model.OrderItem) (res primitive.ObjectID, err error) {
-	order := model.Order{
-		UserId:      user.UserId,
-		TotalAmount: 0,
-		Status:      "PENDING",
-		OrderItems:  items,
-		CreatedAt:   helper.NewDatetime(),
-		UpdatedAt:   helper.NewDatetime(),
-	}
+func (r *orderRepository) Checkout(ctx context.Context, order *model.Order) (res primitive.ObjectID, err error) {
 
 	result, err := r.collection.InsertOne(ctx, order)
 	if err != nil {
