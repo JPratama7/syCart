@@ -65,5 +65,10 @@ func main() {
 
 	route.Authorized(group, middleware)
 
-	log.Fatal(app.Listen(":5000"))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "5000"
+	}
+
+	log.Fatal(app.Listen(":" + port))
 }
