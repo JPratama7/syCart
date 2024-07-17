@@ -36,11 +36,63 @@ func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, productId pr
 	return
 }
 
+func (p *cartImpl) UpdateCart(ctx context.Context, userId *model.User, cart *model.CartItem) (err error) {
+	_, err = p.coll.UpdateOne(ctx, bson.M{
+		"user_id": userId.UserId,
+		"_id":     cart.CartItemId,
+	}, bson.M{
+		"$set": bson.M{
+			"quantity": cart.Quantity,
+			"added_at": helper.NewDatetime(),
+		},
+	})
+	return
+}
+
+func (p *cartImpl) GetCartItem(ctx context.Context, userId *model.User, productId primitive.ObjectID) (res model.CartItem, err error) {
+	err = p.coll.FindOne(ctx, bson.M{
+		"user_id":    userId.UserId,
+		"product_id": productId,
+	}).Decode(&res)
+
+	return
+}
+
 func (p *cartImpl) RemoveCart(ctx context.Context, userId *model.User, cartId primitive.ObjectID) (err error) {
 	_, err = p.coll.DeleteOne(ctx, bson.M{
-		"user_id":      userId.UserId,
-		"cart_item_id": cartId,
+		"user_id": userId.UserId,
+		"_id":     cartId,
 	})
+	return
+}
+
+func (p *cartImpl) CartsWithProduct(ctx context.Context, userId *model.User) (res []model.CartItemWithProduct, err error) {
+	filter := mongo.Pipeline{bson.D{
+		{"$lookup",
+			bson.D{
+				{"from", "products"},
+				{"localField", "product_id"},
+				{"foreignField", "_id"},
+				{"as", "product"},
+			},
+		},
+	},
+		bson.D{
+			{"$unwind",
+				bson.D{
+					{"path", "$product"},
+					{"preserveNullAndEmptyArrays", false},
+				},
+			},
+		},
+		bson.D{{"$match", bson.D{{"user_id", userId.UserId}}}}}
+
+	curr, err := p.coll.Aggregate(ctx, filter)
+	if err != nil {
+		return
+	}
+
+	err = curr.All(ctx, &res)
 	return
 }
 

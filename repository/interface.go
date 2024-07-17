@@ -13,7 +13,10 @@ type ProductRepository interface {
 }
 
 type CartRepository interface {
-	AddCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID, quantity int) (primitive.ObjectID, error)
+	AddCart(ctx context.Context, userId *model.User, productId primitive.ObjectID, quantity int) (primitive.ObjectID, error)
+	UpdateCart(ctx context.Context, userId *model.User, cart *model.CartItem) error
+	GetCartItem(ctx context.Context, userId *model.User, productId primitive.ObjectID) (model.CartItem, error)
+	CartsWithProduct(ctx context.Context, userId *model.User) ([]model.CartItemWithProduct, error)
 	RemoveCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID) error
 	GetCarts(ctx context.Context, userId *model.User) ([]model.CartItem, error)
 }
