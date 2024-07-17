@@ -9,5 +9,14 @@ type Register struct {
 type Login struct {
 	Username string `json:"username"`
 	Email    string `json:"email"`
-	Password string `json:"password,required" validate:"required"`
+	Password string `json:"password" validate:"required"`
+}
+
+type Cart struct {
+	ProductId string `json:"product_id" validate:"required"`
+	Quantity  int    `json:"quantity" validate:"required"`
+}
+
+type CartItem struct {
+	CartItemId string `json:"cart_item_id" validate:"required"`
 }
