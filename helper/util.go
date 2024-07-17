@@ -17,6 +17,11 @@ func NewTimestamp() primitive.Timestamp {
 	return primitive.Timestamp{T: uint32(time.Now().Unix())}
 }
 
+// NewDatetime creates a new datetime.
+func NewDatetime() primitive.DateTime {
+	return primitive.NewDateTimeFromTime(time.Now())
+}
+
 // ExtractLocal extracts a value from the context's locals.
 func ExtractLocal[T any](ctx *fiber.Ctx, key string) (res T, err error) {
 	value := ctx.Locals(key)

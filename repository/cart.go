@@ -22,7 +22,7 @@ func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, itemId primi
 		UserId:    userId.UserId,
 		ProductId: itemId,
 		Quantity:  quantity,
-		AddedAt:   helper.NewTimestamp(),
+		AddedAt:   helper.NewDatetime(),
 	})
 
 	if err != nil {

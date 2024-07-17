@@ -26,8 +26,8 @@ func (r *orderRepository) Checkout(ctx context.Context, user *model.User, items 
 		TotalAmount: 0,
 		Status:      "PENDING",
 		OrderItems:  items,
-		CreatedAt:   helper.NewTimestamp(),
-		UpdatedAt:   helper.NewTimestamp(),
+		CreatedAt:   helper.NewDatetime(),
+		UpdatedAt:   helper.NewDatetime(),
 	}
 
 	result, err := r.collection.InsertOne(ctx, order)

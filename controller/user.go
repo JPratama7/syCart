@@ -43,8 +43,8 @@ func Register(ctx *fiber.Ctx) (err error) {
 		Email:        data.Email,
 		Salt:         salt,
 		PasswordHash: hashedPassword,
-		CreatedAt:    helper.NewTimestamp(),
-		UpdatedAt:    helper.NewTimestamp(),
+		CreatedAt:    helper.NewDatetime(),
+		UpdatedAt:    helper.NewDatetime(),
 	})
 
 	if err != nil {
