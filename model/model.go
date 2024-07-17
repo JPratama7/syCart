@@ -82,6 +82,6 @@ type Payment struct {
 	OrderId       primitive.ObjectID `json:"order_id" bson:"order_id"`
 	Amount        float64            `json:"amount" bson:"amount"`
 	Status        Status             `json:"status" bson:"status"`
-	TransactionId [12]byte           `json:"transaction_id" bson:"transaction_id"`
+	TransactionId string             `json:"transaction_id" bson:"transaction_id"`
 	CreatedAt     primitive.DateTime `json:"created_at" bson:"created_at"`
 }
