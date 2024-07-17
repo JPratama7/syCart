@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"errors"
 	"github.com/rs/xid"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -32,6 +33,7 @@ func (r *paymentRepository) CreatePayment(ctx context.Context, order *model.Orde
 	}
 	res, ok := result.InsertedID.(primitive.ObjectID)
 	if !ok {
+		err = errors.New("payment id is not primitive.ObjectID")
 		return
 	}
 
