@@ -20,3 +20,7 @@ type Cart struct {
 type CartItem struct {
 	CartItemId string `json:"cart_item_id" validate:"required"`
 }
+
+type Checkout struct {
+	CartId string `json:"cart_id" validate:"required"`
+}
