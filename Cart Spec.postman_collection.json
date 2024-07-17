@@ -1,0 +1,1065 @@
+{
+	"info": {
+		"_postman_id": "787792b9-4982-4a4f-808c-90d3053ed5a5",
+		"name": "Cart Spec",
+		"description": "API Documentation For SyCart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16359547"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 11:18:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 201,\n    \"success\": true,\n    \"status\": \"User created successfully\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "Duplicate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:12:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 409,\n    \"success\": false,\n    \"status\": \"Username or email already exist\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:40:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "364"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Login successful\",\n    \"data\": {\n        \"token\": \"v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjQwOjUzKzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDo0MDo1MyswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6NDA6NTMrMDc6MDAifUKznDFB0wvnK0C3FD5Utuc5NKglkNvhSL7J7KckFSzBMyFhP_wVAHg9fzmTxcnIQ3fZyHcEaJF9ny7LOBvLxAA\"\n    }\n}"
+				},
+				{
+					"name": "Invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"nc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:41:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"success\": false,\n    \"status\": \"Invalid Credentials\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Carts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjQxOjE4KzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDo0MToxOCswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6NDE6MTgrMDc6MDAiffzd_Q0i6XmowkRMMGyo4Qn8cVQPJ_bS3N-Q22iVXJ3gH-bKKS4Tk3iFtiPYdrDiD60mpw8dCbxWlkZXRohaqgY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/cart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Empty Cart",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:41:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"success\": false,\n    \"status\": \"Cart Not Found\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:41:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "230"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Cart Found\",\n    \"data\": [\n        {\n            \"cart_item_id\": \"6698025ae5a6c1a6fbe69f21\",\n            \"user_id\": \"6697a88f3b7e584a396e8422\",\n            \"product_id\": \"66975800d07d73ef698ee5b9\",\n            \"quantity\": 2,\n            \"added_at\": \"2024-07-17T17:41:46.045Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjE2OjMyKzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDoxNjozMiswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6MTY6MzIrMDc6MDAifdFTX1K5ZLygUu_pTeoSl5TjYaVgbmba36_OXYo9VC-l4AeeqEqLYBEJhroqpYvJAJSwsJ63kQLW0vaFCA3dkgI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_id\": \"66975800d07d73ef698ee5b9\",\n    \"quantity\": 2\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": \"66975800d07d73ef698ee5b9\",\n    \"quantity\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:21:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Product Added to Cart\",\n    \"data\": \"6697fd964913b730d7c3c095\"\n}"
+				},
+				{
+					"name": "Item Exist",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product_id\": \"66975800d07d73ef698ee5b9\",\n    \"quantity\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:22:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Cart Updated\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjQxOjE4KzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDo0MToxOCswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6NDE6MTgrMDc6MDAiffzd_Q0i6XmowkRMMGyo4Qn8cVQPJ_bS3N-Q22iVXJ3gH-bKKS4Tk3iFtiPYdrDiD60mpw8dCbxWlkZXRohaqgY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/cart",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/cart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:42:23 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Cart Item Removed\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjE2OjMyKzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDoxNjozMiswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6MTY6MzIrMDc6MDAifdFTX1K5ZLygUu_pTeoSl5TjYaVgbmba36_OXYo9VC-l4AeeqEqLYBEJhroqpYvJAJSwsJ63kQLW0vaFCA3dkgI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/checkout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"checkout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "No Item",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/checkout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"checkout"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:20:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "84"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"success\": false,\n    \"status\": \"Cart not found, create a new one\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/checkout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"checkout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:22:24 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Successfully checkout\",\n    \"data\": \"6697fdd14913b730d7c3c097\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Check Payment",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "v4.public.eyJkYXRhIjp7InVzZXJuYW1lIjoiaiIsImVtYWlsIjoiakBwLmNvbSJ9LCJleHAiOiIyMDI0LTA3LTE4VDAxOjE2OjMyKzA3OjAwIiwiaWF0IjoiMjAyNC0wNy0xOFQwMDoxNjozMiswNzowMCIsIm5iZiI6IjIwMjQtMDctMThUMDA6MTY6MzIrMDc6MDAifdFTX1K5ZLygUu_pTeoSl5TjYaVgbmba36_OXYo9VC-l4AeeqEqLYBEJhroqpYvJAJSwsJ63kQLW0vaFCA3dkgI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/payments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"payments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/payments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:44:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "255"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"Payment Found\",\n    \"data\": [\n        {\n            \"payment_id\": \"669802ebfcb81fb94a984829\",\n            \"order_id\": \"669802ebfcb81fb94a984828\",\n            \"amount\": 99.24,\n            \"status\": \"PENDING\",\n            \"transaction_id\": \"TRN-cqc05qq5rq636ufmg7v0\",\n            \"created_at\": \"1970-01-01T00:00:00Z\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/payments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:45:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"success\": false,\n    \"status\": \"Payment Not Found\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/products?category=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/products?category=0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:45:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "364"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"products fetched\",\n    \"data\": [\n        {\n            \"product_id\": \"66975800d07d73ef698ee5b9\",\n            \"category_id\": \"66975800d07d73ef698ee5af\",\n            \"name\": \"product0\",\n            \"description\": \"description for product0\",\n            \"price\": 49.62,\n            \"stock_quantity\": 48,\n            \"image_url\": \"http://example.com/image0.jpg\",\n            \"created_at\": \"2024-07-17T05:34:56.412Z\",\n            \"updated_at\": \"2024-07-17T05:34:56.412Z\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Detailed",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/products/:id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"products",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "66975800d07d73ef698ee5b9"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Detailed",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/products/:id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "66975800d07d73ef698ee5b9"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 17 Jul 2024 17:45:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "361"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"product fetched\",\n    \"data\": {\n        \"product_id\": \"66975800d07d73ef698ee5b9\",\n        \"category_id\": \"66975800d07d73ef698ee5af\",\n        \"name\": \"product0\",\n        \"description\": \"description for product0\",\n        \"price\": 49.62,\n        \"stock_quantity\": 48,\n        \"image_url\": \"http://example.com/image0.jpg\",\n        \"created_at\": \"2024-07-17T05:34:56.412Z\",\n        \"updated_at\": \"2024-07-17T05:34:56.412Z\"\n    }\n}"
+				}
+			]
+		}
+	]
+}
