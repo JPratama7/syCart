@@ -8,6 +8,7 @@ type User struct {
 	UserId       primitive.ObjectID  `json:"user_id" bson:"_id,omitempty"`
 	Username     string              `json:"username" bson:"username"`
 	Email        string              `json:"email" bson:"email"`
+	Salt         string              `json:"-" bson:"salt"`
 	PasswordHash string              `json:"-" bson:"passwordHash"`
 	CreatedAt    primitive.Timestamp `json:"created_at" bson:"created_at"`
 	UpdatedAt    primitive.Timestamp `json:"updated_at" bson:"updated_at"`
