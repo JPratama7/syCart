@@ -17,10 +17,10 @@ func NewCartRepository(db *mongo.Database, coll string) CartRepository {
 	return &cartImpl{coll: db.Collection(coll)}
 }
 
-func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID, quantity int) (res primitive.ObjectID, err error) {
+func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, productId primitive.ObjectID, quantity int) (res primitive.ObjectID, err error) {
 	cur, err := p.coll.InsertOne(ctx, model.CartItem{
 		UserId:    userId.UserId,
-		ProductId: itemId,
+		ProductId: productId,
 		Quantity:  quantity,
 		AddedAt:   helper.NewDatetime(),
 	})
