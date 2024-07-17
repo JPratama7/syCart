@@ -79,3 +79,11 @@ func CheckPasswordHash(password, salt, hash string) bool {
 	// Compare the hashed password with the provided hash
 	return hashedPassword == hash
 }
+
+func InjectToContext[T any](key string, data T) func(ctx *fiber.Ctx) error {
+	return func(ctx *fiber.Ctx) error {
+		ctx.Locals(key, data)
+		return ctx.Next()
+	}
+
+}
