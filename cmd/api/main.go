@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"log"
 	"os"
 	"syCart/helper"
 	"syCart/repository"
@@ -38,7 +39,7 @@ func main() {
 		panic(er)
 	}
 
-	defer conn.Disconnect(context.Background())
+	defer log.Println(conn.Disconnect(context.Background()))
 
 	token := paseto.NewPASETO(os.Getenv("PUBLIC_KEY"), os.Getenv("PRIVATE_KEY"), time.Duration(60)*time.Minute)
 
@@ -64,5 +65,5 @@ func main() {
 
 	route.Authorized(group, middleware)
 
-	app.Listen(":5000")
+	log.Fatal(app.Listen(":5000"))
 }
