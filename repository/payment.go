@@ -20,12 +20,12 @@ func NewPaymentRepository(db *mongo.Database, collectionName string) PaymentRepo
 	}
 }
 
-func (r *paymentRepository) CreatePayment(ctx context.Context, order *model.Order) (res primitive.ObjectID, err error) {
+func (r *paymentRepository) CreatePayment(ctx context.Context, orderId primitive.ObjectID, order *model.Order) (res primitive.ObjectID, err error) {
 	payment := model.Payment{
-		OrderId:       order.OrderId,
+		OrderId:       orderId,
 		Amount:        order.TotalAmount,
 		Status:        "PENDING",
-		TransactionId: xid.New(),
+		TransactionId: "TRN-" + xid.New().String(),
 	}
 	result, err := r.collection.InsertOne(ctx, payment)
 	if err != nil {
@@ -55,6 +55,36 @@ func (r *paymentRepository) FetchPayment(ctx context.Context, user *model.User) 
 
 	err = cursor.All(ctx, &res)
 
+	return
+}
+func (r *paymentRepository) FetchPaymentByUser(ctx context.Context, user *model.User) (res []model.Payment, err error) {
+	filter := mongo.Pipeline{
+		bson.D{
+			{"$lookup",
+				bson.D{
+					{"from", "orders"},
+					{"localField", "order_id"},
+					{"foreignField", "_id"},
+					{"as", "order"},
+				},
+			},
+		},
+		bson.D{
+			{"$unwind",
+				bson.D{
+					{"path", "$order"},
+					{"preserveNullAndEmptyArrays", false},
+				},
+			},
+		},
+		bson.D{{"$match", bson.D{{"order.user_id", user.UserId}}}},
+	}
+	cursor, err := r.collection.Aggregate(ctx, filter)
+	if err != nil {
+		return nil, err
+	}
+
+	err = cursor.All(ctx, &res)
 	return
 }
 
