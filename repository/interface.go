@@ -25,7 +25,7 @@ type UserRepository interface {
 	GetByEmail(ctx context.Context, email string) (model.User, error)
 	CreateUser(ctx context.Context, user *model.User) error
 	UpdateUser(ctx context.Context, user *model.User) error
-	UsernameOrEmailExist(ctx context.Context, username, email string) bool
+	UsernameOrEmailExist(ctx context.Context, username, email string) (model.User, error)
 }
 
 type OrderRepository interface {

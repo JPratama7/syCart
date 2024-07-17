@@ -25,16 +25,10 @@ func (r *userRepository) GetUser(ctx context.Context, userId primitive.ObjectID)
 	return user, err
 }
 
-func (r *userRepository) UsernameOrEmailExist(ctx context.Context, username, email string) bool {
-	var user model.User
+func (r *userRepository) UsernameOrEmailExist(ctx context.Context, username, email string) (user model.User, err error) {
 	filter := bson.M{"$or": bson.A{bson.M{"username": username}, bson.M{"email": email}}}
-	err := r.collection.FindOne(ctx, filter).Decode(&user)
-
-	if err != nil {
-		return false
-	}
-
-	return true
+	err = r.collection.FindOne(ctx, filter).Decode(&user)
+	return
 }
 
 func (r *userRepository) GetByEmail(ctx context.Context, email string) (model.User, error) {
