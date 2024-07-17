@@ -20,17 +20,18 @@ type CartRepository interface {
 
 type UserRepository interface {
 	GetUser(ctx context.Context, userId primitive.ObjectID) (model.User, error)
+	GetUserByEmailPass(ctx context.Context, username, password string) (model.User, error)
 	CreateUser(ctx context.Context, user *model.User) error
 	UpdateUser(ctx context.Context, user *model.User) error
 }
 
 type OrderRepository interface {
-	Checkout(ctx context.Context, userId *model.User) (model.Order, error)
+	Checkout(ctx context.Context, user *model.User, items *[]model.OrderItem) (primitive.ObjectID, error)
 	GetOrder(ctx context.Context, orderId primitive.ObjectID) (model.Order, error)
 }
 
 type PaymentRepository interface {
-	CreatePayment(ctx context.Context, orderId primitive.ObjectID) (model.Payment, error)
+	CreatePayment(ctx context.Context, order *model.Order) (primitive.ObjectID, error)
 	GetPayment(ctx context.Context, paymentId primitive.ObjectID) (model.Payment, error)
 	FetchPayment(ctx context.Context, userId *model.User) ([]model.Payment, error)
 	UpdatePayment(ctx context.Context, payment *model.Payment) error
