@@ -21,8 +21,11 @@ type CartRepository interface {
 type UserRepository interface {
 	GetUser(ctx context.Context, userId primitive.ObjectID) (model.User, error)
 	GetUserByEmailPass(ctx context.Context, username, password string) (model.User, error)
+	GetByUsername(ctx context.Context, username string) (model.User, error)
+	GetByEmail(ctx context.Context, email string) (model.User, error)
 	CreateUser(ctx context.Context, user *model.User) error
 	UpdateUser(ctx context.Context, user *model.User) error
+	UsernameOrEmailExist(ctx context.Context, username, email string) bool
 }
 
 type OrderRepository interface {
