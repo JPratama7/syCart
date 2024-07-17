@@ -9,7 +9,7 @@ import (
 )
 
 func CheckoutCart(ctx *fiber.Ctx) (err error) {
-	auther, err := helper.ExtractLocal[helper.AuthMiddleware](ctx, "auther")
+	auther, err := helper.ExtractLocal[*helper.AuthMiddleware](ctx, "auther")
 	if err != nil {
 		return
 	}
@@ -45,7 +45,7 @@ func CheckoutCart(ctx *fiber.Ctx) (err error) {
 	}
 
 	listCart, err := cart.CartsWithProduct(ctx.Context(), &userData)
-	if err != nil {
+	if err != nil || len(listCart) == 0 {
 		return fiber.NewError(fiber.StatusNotFound, "Cart not found, create a new one")
 	}
 
@@ -53,7 +53,7 @@ func CheckoutCart(ctx *fiber.Ctx) (err error) {
 	orderData.UserId = userData.UserId
 	orderData.Status = model.PENDING
 
-	orderItems := make([]model.OrderItem, len(listCart))
+	orderItems := make([]model.OrderItem, 0, len(listCart))
 	for _, v := range listCart {
 		orderItems = append(orderItems, model.OrderItem{
 			ProductId:       v.ProductId,
@@ -67,12 +67,12 @@ func CheckoutCart(ctx *fiber.Ctx) (err error) {
 	orderData.CreatedAt = helper.NewDatetime()
 	orderData.UpdatedAt = helper.NewDatetime()
 
-	orderData.OrderId, err = order.Checkout(ctx.Context(), orderData)
+	orderId, err := order.Checkout(ctx.Context(), orderData)
 	if err != nil {
 		return
 	}
 
-	id, err := payment.CreatePayment(ctx.Context(), orderData)
+	id, err := payment.CreatePayment(ctx.Context(), orderId, orderData)
 	if err != nil {
 		return
 	}
