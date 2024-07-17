@@ -66,6 +66,13 @@ func (p *cartImpl) RemoveCart(ctx context.Context, userId *model.User, cartId pr
 	return
 }
 
+func (p *cartImpl) RemoveAll(ctx context.Context, userId *model.User) (err error) {
+	_, err = p.coll.DeleteMany(ctx, bson.M{
+		"user_id": userId.UserId,
+	})
+	return
+}
+
 func (p *cartImpl) CartsWithProduct(ctx context.Context, userId *model.User) (res []model.CartItemWithProduct, err error) {
 	filter := mongo.Pipeline{bson.D{
 		{"$lookup",

@@ -19,6 +19,7 @@ type CartRepository interface {
 	CartsWithProduct(ctx context.Context, userId *model.User) ([]model.CartItemWithProduct, error)
 	RemoveCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID) error
 	GetCarts(ctx context.Context, userId *model.User) ([]model.CartItem, error)
+	RemoveAll(ctx context.Context, userId *model.User) (err error)
 }
 
 type UserRepository interface {
@@ -32,7 +33,7 @@ type UserRepository interface {
 }
 
 type OrderRepository interface {
-	Checkout(ctx context.Context, user *model.User, items *[]model.OrderItem) (primitive.ObjectID, error)
+	Checkout(ctx context.Context, order *model.Order) (primitive.ObjectID, error)
 	GetOrder(ctx context.Context, orderId primitive.ObjectID) (model.Order, error)
 }
 
