@@ -38,8 +38,9 @@ type OrderRepository interface {
 }
 
 type PaymentRepository interface {
-	CreatePayment(ctx context.Context, order *model.Order) (primitive.ObjectID, error)
+	CreatePayment(ctx context.Context, orderId primitive.ObjectID, order *model.Order) (primitive.ObjectID, error)
 	GetPayment(ctx context.Context, paymentId primitive.ObjectID) (model.Payment, error)
 	FetchPayment(ctx context.Context, userId *model.User) ([]model.Payment, error)
+	FetchPaymentByUser(ctx context.Context, user *model.User) ([]model.Payment, error)
 	UpdatePayment(ctx context.Context, payment *model.Payment) error
 }
