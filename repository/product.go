@@ -12,7 +12,7 @@ type productImpl struct {
 	coll *mongo.Collection
 }
 
-func NewProductImpl(db *mongo.Database, coll string) ProductRepository {
+func NewProductRepository(db *mongo.Database, coll string) ProductRepository {
 	return &productImpl{coll: db.Collection(coll)}
 }
 

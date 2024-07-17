@@ -13,7 +13,7 @@ type cartImpl struct {
 	coll *mongo.Collection
 }
 
-func NewCartImpl(db *mongo.Database, coll string) CartRepository {
+func NewCartRepository(db *mongo.Database, coll string) CartRepository {
 	return &cartImpl{coll: db.Collection(coll)}
 }
 
