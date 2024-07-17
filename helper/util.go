@@ -28,7 +28,6 @@ func ExtractLocal[T any](ctx *fiber.Ctx, key string) (res T, err error) {
 	if value == nil {
 		return
 	}
-
 	res, ok := value.(T)
 	if !ok {
 		err = errors.New("invalid type")

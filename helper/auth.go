@@ -35,17 +35,17 @@ func (a AuthMiddleware) Decode(ctx *fiber.Ctx) (data model.Token, err error) {
 func (a AuthMiddleware) Authenticate(ctx *fiber.Ctx) error {
 	token := strings.Split(ctx.Get("Authorization"), " ")
 	if len(token) != 2 {
-		return ctx.Status(fiber.StatusUnauthorized).SendString("Unauthorized")
+		return ctx.Status(fiber.StatusUnauthorized).SendString("Unauthorized, No token found")
 	}
 
-	payload := new(model.Token)
+	payload := new(paseto.Payload[model.Token])
 
 	err := a.paseto.Decode(token[1], payload)
 	if err != nil {
-		return ctx.Status(fiber.StatusUnauthorized).SendString("Unauthorized")
+		return ctx.Status(fiber.StatusUnauthorized).SendString("Unauthorized, No token found")
 	}
 
-	ctx.Locals("payload", *payload)
+	ctx.Locals(a.key, payload.Data)
 
 	return ctx.Next()
 }
