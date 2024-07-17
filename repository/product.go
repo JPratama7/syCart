@@ -8,15 +8,15 @@ import (
 	"syCart/model"
 )
 
-type ProductImpl struct {
+type productImpl struct {
 	coll *mongo.Collection
 }
 
-func NewProductImpl(coll *mongo.Collection) ProductRepository {
-	return &ProductImpl{coll: coll}
+func NewProductImpl(db *mongo.Database, coll string) ProductRepository {
+	return &productImpl{coll: db.Collection(coll)}
 }
 
-func (p *ProductImpl) GetProduct(ctx context.Context, productId primitive.ObjectID) (res model.Product, err error) {
+func (p *productImpl) GetProduct(ctx context.Context, productId primitive.ObjectID) (res model.Product, err error) {
 	err = p.
 		coll.
 		FindOne(ctx, bson.M{"_id": productId}).
@@ -25,7 +25,7 @@ func (p *ProductImpl) GetProduct(ctx context.Context, productId primitive.Object
 	return
 }
 
-func (p *ProductImpl) FetchProduct(ctx context.Context) (res []model.Product, err error) {
+func (p *productImpl) FetchProduct(ctx context.Context) (res []model.Product, err error) {
 	curr, err := p.coll.Find(ctx, bson.M{})
 
 	if err != nil {
@@ -36,7 +36,7 @@ func (p *ProductImpl) FetchProduct(ctx context.Context) (res []model.Product, er
 	return
 }
 
-func (p *ProductImpl) GetProductByCategoryName(ctx context.Context, categoryName string) (res []model.Product, err error) {
+func (p *productImpl) GetProductByCategoryName(ctx context.Context, categoryName string) (res []model.Product, err error) {
 	pipeline := mongo.Pipeline{
 		bson.D{
 			{"$lookup",

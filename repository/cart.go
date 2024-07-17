@@ -13,15 +13,15 @@ func NewTimestamp() primitive.Timestamp {
 	return primitive.Timestamp{T: uint32(time.Now().Unix())}
 }
 
-type CartImpl struct {
+type cartImpl struct {
 	coll *mongo.Collection
 }
 
-func NewCartImpl(coll *mongo.Collection) CartRepository {
-	return &CartImpl{coll: coll}
+func NewCartImpl(db *mongo.Database, coll string) CartRepository {
+	return &cartImpl{coll: db.Collection(coll)}
 }
 
-func (p *CartImpl) AddCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID, quantity int) (res primitive.ObjectID, err error) {
+func (p *cartImpl) AddCart(ctx context.Context, userId *model.User, itemId primitive.ObjectID, quantity int) (res primitive.ObjectID, err error) {
 	cur, err := p.coll.InsertOne(ctx, model.CartItem{
 		UserId:    userId.UserId,
 		ProductId: itemId,
@@ -40,7 +40,7 @@ func (p *CartImpl) AddCart(ctx context.Context, userId *model.User, itemId primi
 	return
 }
 
-func (p *CartImpl) RemoveCart(ctx context.Context, userId *model.User, cartId primitive.ObjectID) (err error) {
+func (p *cartImpl) RemoveCart(ctx context.Context, userId *model.User, cartId primitive.ObjectID) (err error) {
 	_, err = p.coll.DeleteOne(ctx, bson.M{
 		"user_id":      userId.UserId,
 		"cart_item_id": cartId,
@@ -48,7 +48,7 @@ func (p *CartImpl) RemoveCart(ctx context.Context, userId *model.User, cartId pr
 	return
 }
 
-func (p *CartImpl) GetCarts(ctx context.Context, userId *model.User) (res []model.CartItem, err error) {
+func (p *cartImpl) GetCarts(ctx context.Context, userId *model.User) (res []model.CartItem, err error) {
 	cur, err := p.coll.Find(ctx, bson.M{
 		"user_id": userId.UserId,
 	})
