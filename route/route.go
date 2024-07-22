@@ -6,15 +6,16 @@ import (
 	"syCart/helper"
 )
 
-func Unauthorized(app fiber.Router) {
+func Unauthorized(app fiber.Router) fiber.Router {
 	app.Post("/login", controller.Login)
 	app.Post("/register", controller.Register)
 
 	app.Get("/products", controller.FetchProducts)
 	app.Get("/products/:id", controller.GetProduct)
+	return app
 }
 
-func Authorized(app fiber.Router, middleware *helper.AuthMiddleware) {
+func Authorized(app fiber.Router, middleware *helper.AuthMiddleware) fiber.Router {
 	group := app.Group("/")
 	group.Use(middleware.Authenticate)
 
@@ -26,4 +27,5 @@ func Authorized(app fiber.Router, middleware *helper.AuthMiddleware) {
 
 	group.Post("/checkout", controller.CheckoutCart)
 	group.Get("/payments", controller.CheckPayment)
+	return app
 }

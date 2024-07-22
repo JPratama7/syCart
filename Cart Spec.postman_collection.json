@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "787792b9-4982-4a4f-808c-90d3053ed5a5",
+		"_postman_id": "00711e10-c40a-40c8-86ba-0b6e065002c9",
 		"name": "Cart Spec",
 		"description": "API Documentation For SyCart",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -22,15 +22,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/register",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/register",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"register"
 					]
@@ -152,15 +147,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/login",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/login",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"login"
 					]
@@ -283,17 +273,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/cart",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/cart/",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
-						"cart"
+						"cart",
+						""
 					]
 				}
 			},
@@ -405,15 +391,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/cart",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/cart",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"cart"
 					]
@@ -545,15 +526,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/cart",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/cart",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"cart"
 					]
@@ -627,15 +603,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/checkout",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/checkout",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"checkout"
 					]
@@ -752,15 +723,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/payments",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/payments",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"payments"
 					]
@@ -772,15 +738,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/payments",
 							"protocol": "http",
@@ -821,15 +778,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cart_item_id\": \"6697f3cf58086a9fa07f4a96\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/payments",
 							"protocol": "http",
@@ -885,15 +833,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/products?category=0",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/products?category=0",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"products"
 					],
@@ -911,15 +854,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/products?category=0",
 							"protocol": "http",
@@ -981,15 +915,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/products/:id",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/products/:id",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "5000",
 					"path": [
 						"products",
 						":id"
@@ -1008,15 +937,6 @@
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"j@p.com\",\n    \"username\": \"j\",\n    \"password\": \"enc123\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://127.0.0.1:5000/products/:id",
 							"protocol": "http",
@@ -1060,6 +980,35 @@
 					"body": "{\n    \"code\": 200,\n    \"success\": true,\n    \"status\": \"product fetched\",\n    \"data\": {\n        \"product_id\": \"66975800d07d73ef698ee5b9\",\n        \"category_id\": \"66975800d07d73ef698ee5af\",\n        \"name\": \"product0\",\n        \"description\": \"description for product0\",\n        \"price\": 49.62,\n        \"stock_quantity\": 48,\n        \"image_url\": \"http://example.com/image0.jpg\",\n        \"created_at\": \"2024-07-17T05:34:56.412Z\",\n        \"updated_at\": \"2024-07-17T05:34:56.412Z\"\n    }\n}"
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://127.0.0.1:500/api/v1",
+			"type": "string"
 		}
 	]
 }
